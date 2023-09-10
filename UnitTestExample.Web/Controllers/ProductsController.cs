@@ -110,7 +110,7 @@ namespace UnitTestExample.Web.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _repository.GetById(id);
-            _repository.Remove(product);
+            _repository.Delete(product);
             return RedirectToAction(nameof(Index));
         }
 

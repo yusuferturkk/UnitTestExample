@@ -17,5 +17,7 @@ namespace UnitTestExample.Web.Models
         public int? Stock { get; set; }
         [Required]
         public string Color { get; set; }
+
+        public Category Category { get; set; }
     }
 }

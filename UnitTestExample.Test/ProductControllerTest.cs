@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using UnitTestExample.Web.Controllers;
 using UnitTestExample.Web.Models;
@@ -113,7 +112,7 @@ namespace UnitTestExample.Test
             _mockRepository.Setup(x => x.Create(It.IsAny<Product>())).Callback<Product>(x => newProduct = x);
 
             var result = await _productsController.Create(products.First());
-            _mockRepository.Verify(x => x.Create(It.IsAny<Product>()),Times.Once());
+            _mockRepository.Verify(x => x.Create(It.IsAny<Product>()), Times.Once());
             Assert.Equal(products.First().Id, newProduct.Id);
         }
 
@@ -163,7 +162,7 @@ namespace UnitTestExample.Test
         [InlineData(1)]
         public void EditPOST_InValidModelState_ReturnView(int productId)
         {
-            _productsController.ModelState.AddModelError("Name",  "");
+            _productsController.ModelState.AddModelError("Name", "");
 
             var result = _productsController.Edit(productId, products.First(x => x.Id == productId));
             var viewResult = Assert.IsType<ViewResult>(result);

@@ -27,12 +27,12 @@ namespace UnitTestExample.Web.Repositories
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<TEntity> GetById(int id)
+        public async Task<TEntity> GetById(int? id)
         {
             return await _dbSet.FindAsync(id);
         }
 
-        public void Remove(TEntity entity)
+        public void Delete(TEntity entity)
         {
             _dbSet.Remove(entity);
             _context.SaveChanges();
